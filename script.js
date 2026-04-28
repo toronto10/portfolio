@@ -51,20 +51,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            if (navLinks.style.display === 'flex') {
+            const isActive = navLinks.classList.toggle('active');
+            navLinks.style.display = isActive ? 'flex' : 'none';
+            
+            if (isActive) {
                 navLinks.style.flexDirection = 'column';
                 navLinks.style.position = 'absolute';
                 navLinks.style.top = '100%';
                 navLinks.style.left = '0';
                 navLinks.style.width = '100%';
-                navLinks.style.background = 'rgba(248, 249, 250, 0.95)';
-                if (body.classList.contains('dark-theme')) {
-                    navLinks.style.background = 'rgba(3, 7, 18, 0.95)';
-                }
-                navLinks.style.padding = '20px';
+                navLinks.style.background = body.classList.contains('dark-theme') 
+                    ? 'rgba(3, 7, 18, 0.98)' 
+                    : 'rgba(248, 249, 250, 0.98)';
+                navLinks.style.padding = '30px 20px';
                 navLinks.style.textAlign = 'center';
                 navLinks.style.zIndex = '999';
+                navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
     }
@@ -91,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== EFFET TYPEWRITER =====
-    const words = ["Solutions Data Science", "Interfaces BI Modernes", "Machine Learning Engineer"];
+    const words = ["Data Science","BI Analyst", "Interfaces BI Modernes", "Machine Learning ","Etudiant en BI & Big Data", "Developpeur Full Stack"];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
