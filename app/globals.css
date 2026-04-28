@@ -1,0 +1,253 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Light Theme - Teal/Cyan accent */
+  --background: oklch(0.98 0.005 200);
+  --foreground: oklch(0.15 0.02 200);
+  --card: oklch(1 0 0 / 0.85);
+  --card-foreground: oklch(0.15 0.02 200);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 200);
+  --primary: oklch(0.55 0.15 185);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.6 0.12 220);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.95 0.01 200);
+  --muted-foreground: oklch(0.5 0.02 200);
+  --accent: oklch(0.7 0.18 165);
+  --accent-foreground: oklch(0.15 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.02 200 / 0.2);
+  --input: oklch(0.92 0.01 200);
+  --ring: oklch(0.55 0.15 185);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.75rem;
+  
+  /* Portfolio specific */
+  --glass-border: oklch(0.55 0.15 185 / 0.15);
+  --gradient-primary: linear-gradient(135deg, oklch(0.55 0.15 185) 0%, oklch(0.6 0.12 220) 100%);
+}
+
+.dark {
+  --background: oklch(0.1 0.015 220);
+  --foreground: oklch(0.98 0.005 200);
+  --card: oklch(0.14 0.02 220 / 0.8);
+  --card-foreground: oklch(0.98 0.005 200);
+  --popover: oklch(0.12 0.015 220);
+  --popover-foreground: oklch(0.98 0.005 200);
+  --primary: oklch(0.65 0.15 185);
+  --primary-foreground: oklch(0.1 0 0);
+  --secondary: oklch(0.6 0.12 220);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.2 0.015 220);
+  --muted-foreground: oklch(0.65 0.01 200);
+  --accent: oklch(0.7 0.18 165);
+  --accent-foreground: oklch(0.1 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(1 0 0 / 0.08);
+  --input: oklch(0.2 0.015 220);
+  --ring: oklch(0.65 0.15 185);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  
+  --glass-border: oklch(1 0 0 / 0.1);
+  --gradient-primary: linear-gradient(135deg, oklch(0.55 0.15 185) 0%, oklch(0.6 0.12 220) 100%);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans), 'Inter', system-ui, sans-serif;
+  --font-heading: var(--font-heading), 'Plus Jakarta Sans', system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Glass effect utility */
+.glass {
+  background: var(--card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass:hover {
+  border-color: var(--primary);
+}
+
+/* Text gradient utility */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient button background */
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+/* Typewriter cursor animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
+}
+
+/* Morph animation for profile image */
+@keyframes morph {
+  0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+  100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+.animate-morph {
+  animation: morph 8s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse glow animation */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.55 0.15 185 / 0.3); }
+  50% { box-shadow: 0 0 40px oklch(0.55 0.15 185 / 0.5); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Scroll indicator animation */
+@keyframes scroll-down {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+
+.animate-scroll {
+  animation: scroll-down 1.5s ease-in-out infinite;
+}
+
+/* Section number style */
+.section-number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+  opacity: 0.8;
+}
+
+/* Particles container */
+#particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Timeline styles */
+.timeline-line {
+  position: absolute;
+  left: 1.25rem;
+  top: 3rem;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary), transparent);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--background);
+  box-shadow: 0 0 0 3px var(--primary);
+}
+
+/* Skill tag hover effect */
+.skill-tag {
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px oklch(0.55 0.15 185 / 0.2);
+}
+
+/* Card hover lift effect */
+.card-hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px oklch(0 0 0 / 0.15);
+}
